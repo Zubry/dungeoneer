@@ -18,7 +18,7 @@ mapLoader.load(8, (dungeon) => {
   var stage = new PIXI.Container();
   stage.interactive = true;
   stage.hitArea = new PIXI.Rectangle(0, 0, 525, 375);
-
+hey
   PIXI.loader
     .add("tileset", '../resources/warped-tileset.png')
     .add("objectset", '../resources/warped-objectset.png')
