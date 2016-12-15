@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="25" tileheight="25">
+ <tileset firstgid="1" name="warped-tileset" tilewidth="25" tileheight="25">
+  <image source="../warped-tileset.png" width="500" height="50"/>
+ </tileset>
+ <tileset firstgid="41" name="warped-objectset" tilewidth="25" tileheight="25">
+  <image source="../warped-objectset.png" width="500" height="50"/>
+ </tileset>
+ <tileset firstgid="81" name="sprite-sheet" tilewidth="25" tileheight="25">
+  <image source="../sprite-sheet.png" width="500" height="50"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwTZWBgEB0CWBqIxXFgJijGJS+BxTxJIGYkE4sNA/PwhScszEgxj5B7xehsHiuJ5iFjZjqYN9jDj9rmyQCxFBJG56NjWRLdN9jyGz7/sUExPr8PdHlLLAYAahUUsQ==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1" width="20" height="20">
+  <object gid="53" x="175" y="200"/>
+  <object gid="53" x="200" y="200"/>
+  <object gid="52" x="175" y="225"/>
+  <object gid="53" x="75" y="400"/>
+  <object gid="51" x="75" y="425"/>
+  <object gid="51" x="75" y="100"/>
+  <object gid="52" x="125" y="350"/>
+  <object gid="52" x="325" y="350"/>
+  <object gid="52" x="175" y="350"/>
+  <object gid="52" x="175" y="300"/>
+  <object gid="53" x="175" y="325"/>
+  <object gid="53" x="200" y="350"/>
+  <object gid="53" x="400" y="100"/>
+  <object gid="52" x="375" y="100"/>
+  <object gid="52" x="400" y="125"/>
+  <object gid="52" x="400" y="425"/>
+  <object gid="51" x="225" y="350"/>
+ </objectgroup>
+ <objectgroup name="Object Layer 2" width="20" height="20"/>
+</map>

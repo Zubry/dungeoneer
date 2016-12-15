@@ -1,0 +1,391 @@
+{
+  "width": 8,
+  "height": 32,
+  "texture": "keys.png",
+  "textureMap": [
+    {
+      "name": "blue-corner",
+      "x": 0,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-crescent",
+      "x": 1,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-diamond",
+      "x": 2,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-pentagon",
+      "x": 3,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-triangle",
+      "x": 4,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-rectangle",
+      "x": 5,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-shield",
+      "x": 6,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-wedge",
+      "x": 7,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "red-corner",
+      "x": 0,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-crescent",
+      "x": 1,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-diamond",
+      "x": 2,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-pentagon",
+      "x": 3,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-triangle",
+      "x": 4,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-rectangle",
+      "x": 5,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-shield",
+      "x": 6,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "red-wedge",
+      "x": 7,
+      "y": 1,
+      "solid": false
+    },
+    {
+      "name": "gold-corner",
+      "x": 0,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-crescent",
+      "x": 1,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-diamond",
+      "x": 2,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-pentagon",
+      "x": 3,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-triangle",
+      "x": 4,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-rectangle",
+      "x": 5,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-shield",
+      "x": 6,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "gold-wedge",
+      "x": 7,
+      "y": 2,
+      "solid": false
+    },
+    {
+      "name": "green-corner",
+      "x": 0,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-crescent",
+      "x": 1,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-diamond",
+      "x": 2,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-pentagon",
+      "x": 3,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-triangle",
+      "x": 4,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-rectangle",
+      "x": 5,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-shield",
+      "x": 6,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "green-wedge",
+      "x": 7,
+      "y": 3,
+      "solid": false
+    },
+    {
+      "name": "orange-corner",
+      "x": 0,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-crescent",
+      "x": 1,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-diamond",
+      "x": 2,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-pentagon",
+      "x": 3,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-triangle",
+      "x": 4,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-rectangle",
+      "x": 5,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-shield",
+      "x": 6,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "orange-wedge",
+      "x": 7,
+      "y": 4,
+      "solid": false
+    },
+    {
+      "name": "purple-corner",
+      "x": 0,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-crescent",
+      "x": 1,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-diamond",
+      "x": 2,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-pentagon",
+      "x": 3,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-triangle",
+      "x": 4,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-rectangle",
+      "x": 5,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-shield",
+      "x": 6,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "purple-wedge",
+      "x": 7,
+      "y": 5,
+      "solid": false
+    },
+    {
+      "name": "silver-corner",
+      "x": 0,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-crescent",
+      "x": 1,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-diamond",
+      "x": 2,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-pentagon",
+      "x": 3,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-triangle",
+      "x": 4,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-rectangle",
+      "x": 5,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-shield",
+      "x": 6,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "silver-wedge",
+      "x": 7,
+      "y": 6,
+      "solid": false
+    },
+    {
+      "name": "yellow-corner",
+      "x": 0,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-crescent",
+      "x": 1,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-diamond",
+      "x": 2,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-pentagon",
+      "x": 3,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-triangle",
+      "x": 4,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-rectangle",
+      "x": 5,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-shield",
+      "x": 6,
+      "y": 7,
+      "solid": false
+    },
+    {
+      "name": "yellow-wedge",
+      "x": 7,
+      "y": 7,
+      "solid": false
+    }
+  ]
+}

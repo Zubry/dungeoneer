@@ -1,0 +1,31 @@
+{
+  "width": 20,
+  "height": 2,
+  "texture": "sprite-sheet.png",
+  "textureMap": [
+    {
+      "name": "g",
+      "x": 0,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "gg",
+      "x": 1,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "gt",
+      "x": 2,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "ggt",
+      "x": 3,
+      "y": 0,
+      "solid": false
+    }
+  ]
+}

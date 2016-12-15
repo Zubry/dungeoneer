@@ -1,0 +1,85 @@
+{
+  "width": 20,
+  "height": 2,
+  "texture": "warped-objectset.png",
+  "textureMap": [
+    {
+      "name": "table-nw",
+      "x": 0,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-ne",
+      "x": 1,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-se",
+      "x": 2,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-sw",
+      "x": 3,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-north",
+      "x": 4,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-south",
+      "x": 5,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-horizontal",
+      "x": 6,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-vertical",
+      "x": 7,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-statue-horizontal",
+      "x": 8,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "table-statue-vertical",
+      "x": 9,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "barrel",
+      "x": 10,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "crate",
+      "x": 11,
+      "y": 0,
+      "solid": true
+    },
+    {
+      "name": "crates",
+      "x": 12,
+      "y": 0,
+      "solid": true
+    }
+  ]
+}
