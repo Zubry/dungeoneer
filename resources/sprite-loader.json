@@ -1,0 +1,38 @@
+[
+  {
+    "name": "tileset",
+    "location": "../resources/warped-tileset.png"
+  },
+  {
+    "name": "objectset",
+    "location": "../resources/warped-objectset.png"
+  },
+  {
+    "name": "spriteset",
+    "location": "../resources/sprite-sheet.png"
+  },
+  {
+    "name": "interface",
+    "location": "../resources/interface.png"
+  },
+  {
+    "name": "magicinterface",
+    "location": "../resources/magicinterface.png"
+  },
+  {
+    "name": "minimap",
+    "location": "../resources/minimap.png"
+  },
+  {
+    "name": "minimapterrain",
+    "location": "../resources/minimap-tileset.png"
+  },
+  {
+    "name": "keys",
+    "location": "../resources/keys.png"
+  },
+  {
+    "name": "equipment",
+    "location": "../resources/equipment.png"
+  }
+]
