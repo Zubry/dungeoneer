@@ -1,5 +1,15 @@
 {
-  "name"    : "tilescape-client",
-  "version" : "0.1.0",
-  "main"    : "main.js"
+  "name": "tilescape-client",
+  "version": "0.1.0",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack game/main.js game/bundle.js --debug"
+  },
+  "dependencies": {
+    "pixi.js": "^4.2.3"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

@@ -63,7 +63,7 @@ module.exports = {
     const [subx, suby] = [superx % 20, (supery) % 20];
 
     const room = map.findIndex(({room}) => room === i);
-    map[room].map.gatestones.push({ x: subx, y: suby, type: type});
+    map[room].map.gatestones.push({ x: subx, y: suby + 1, type: type});
   },
   removeGatestone: function(map, superx, supery, type) {
     const [ x, y ] = [Math.floor(superx / 20), Math.floor(supery / 20)]
@@ -72,7 +72,7 @@ module.exports = {
     const [subx, suby] = [superx % 20, (supery) % 20];
 
     const room = map.findIndex(({room}) => room === i);
-    const index = map[room].map.gatestones.findIndex(i => i && i.type !== type)
+    const index = map[room].map.gatestones.findIndex(i => i && i.type === type)
     map[room].map.gatestones.splice(index, 1);
   },
   removeKey: function(map, superx, supery) {

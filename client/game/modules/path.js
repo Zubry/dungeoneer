@@ -17,6 +17,10 @@ class Path {
     this.path = this.path.slice(1);
   }
 
+  empty() {
+    return this.path.length === 0;
+  }
+
   clear() {
     this.path = [];
   }

@@ -30,16 +30,29 @@ function setup(dungeon, renderer) {
     dungeon: dungeon
   });
 
-  let keybag = [];
-
   state.roomTracker.visit(startRoom.room);
 
   require('./game/listeners.js')(state.events);
+  require('./game/scripts/terrain/')(state.events);
+  require('./game/scripts/items/')(state.events);
+  require('./game/scripts/spells/')(state.events);
 
   renderer.updateMap(state);
-  renderer.render();
+  renderer.updateKeyBag(state);
+  renderer.updateMinimap(state);
+  renderer.updateInterface(state);
+
+  tick(state, renderer);
+  setInterval(() => tick(state, renderer), 300);
+
+  // state.events.on('interface-updated', () => renderer.updateInterface(state))
 }
 
-function tick() {
-  
+function tick(state, renderer) {
+  renderer.updateMap(state);
+  renderer.updateKeyBag(state);
+  renderer.updateMinimap(state);
+  renderer.updateInterface(state);
+
+  state.events.emit('game-tick', state);
 }

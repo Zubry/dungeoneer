@@ -8,12 +8,8 @@ class Interfaces {
     this.spells = new Spells([83, 84])
   }
 
-  onInventorySelect() {
-    this.activeTab = 'inventory';
-  }
-
-  onSpellsSelect() {
-    this.activeTab = 'spells';
+  setTab(tab) {
+    this.activeTab = tab;
   }
 }
 

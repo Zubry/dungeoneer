@@ -39,12 +39,12 @@ class Player {
     };
   }
 
-  ggt() {
+  cast_ggt() {
     this.teleport(this.ggt.x, this.ggt.y);
     this.ggt = undefined;
   }
 
-  gt() {
+  cast_gt() {
     this.teleport(this.gt.x, this.gt.y);
     this.gt = undefined;
   }

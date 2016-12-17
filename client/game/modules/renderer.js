@@ -28,7 +28,7 @@ class Renderer {
     this.renderer.render(this.stage);
   }
 
-  create2DRange(width, height, x, y) {
+  create2DRange(width, height) {
     return Array(height)
       .fill(0)
       .map((_, i) => i)
@@ -44,8 +44,10 @@ class Renderer {
 
     terrain.x = i * this.options.tileSize;
     terrain.y = j * this.options.tileSize;
-    terrain.on('click', (e) => state.events.emit('terrain-click', e, { x, y }, state));
+
     terrain.interactive = true;
+    terrain.on('mousedown', (e) => state.events.emit('terrain-click', {x, y}, state));
+
     this.stage.addChild(terrain);
 
     return { i, j, x, y, tile, visited };
@@ -115,12 +117,17 @@ class Renderer {
 
   renderPlayer(state) {
     const playerGraphics = tileset.sprite(this.tilesets.equipmentsprites, 2);
+    // const playerFrames = new PIXI.extras.AnimatedSprite([this.tilesets.equipmentsprites[3].texture, this.tilesets.equipmentsprites[4].texture]);
     playerGraphics.x = 10 * options.tileSize + 12.5;
     playerGraphics.y = 7 * options.tileSize + 12.5;
     playerGraphics.anchor.x = 0.5;
     playerGraphics.anchor.y = 0.5;
     playerGraphics.rotation = state.player.orientation;
+    // playerGraphics.animationSpeed = 1;
+    // playerFrames.play();
+
     this.stage.addChild(playerGraphics);
+    // this.foo = setInterval(() => this.render(), 300);
   }
 
   updateMap(state) {
@@ -163,6 +170,118 @@ class Renderer {
       .forEach(this.renderKeys.bind(this, state))
 
     this.renderPlayer(state);
+
+    this.render();
+  }
+
+  updateKeyBag(state) {
+    state.keybag.keys
+      .forEach((key, i) => {
+        const sprite = tileset.sprite(this.tilesets.keysprites, key);
+
+        sprite.x = i % 6 * 20 + 8;
+        sprite.y = Math.floor(i / 6) * 20 + 8;
+
+        sprite.height = 16;
+        sprite.width = 16;
+        this.stage.addChild(sprite);
+      });
+
+    this.render();
+  }
+
+  updateMinimap(state) {
+    const minimapGraphics = new PIXI.Sprite(PIXI.utils.TextureCache['minimap']);
+    minimapGraphics.x = 21*25;
+    minimapGraphics.y = 0;
+
+    this
+      .create2DRange(62, 42)
+      .map(({i, j}) => ({i, j, x: i + state.player.x - (62 >> 1), y: j + state.player.y - (42 >> 1)}))
+      .map(({i, j, x, y}) => ({i, j, x, y, tile: map.at(state.dungeon, x, y)}))
+      .map(({i, j, x, y, tile}) => ({i, j, x, y, tile, visited: state.roomTracker.visited(map.getRoomNumber(x, y))}))
+      .forEach(({i, j, x, y, tile, visited}) => {
+        const sprite = tileset.sprite(this.tilesets.minimapterrain, visited ? tile.terrain.gid : 21);
+
+        sprite.x = i * 4 + 21 * 25;
+        sprite.y = j * 4;
+
+        sprite.interactive = true;
+        sprite.on('mousedown', (e) => state.events.emit('terrain-click', {x, y}, state));
+
+        this.stage.addChild(sprite);
+      });
+
+    const playerGraphics = new PIXI.Graphics();
+    playerGraphics.beginFill(0xFFFFFF);
+    playerGraphics.drawRect(0, 0, 4, 4);
+    playerGraphics.endFill();
+    playerGraphics.x = 31*4 + 21*25;
+    playerGraphics.y = 21*4;
+    this.stage.addChild(playerGraphics);
+
+    this.stage.addChild(minimapGraphics);
+    this.render();
+  }
+
+  updateInterface(state) {
+    const inventoryHitBoxGraphics = new PIXI.Graphics();
+    inventoryHitBoxGraphics.hitArea = new PIXI.Rectangle(525 + 105, 170, 34, 37);
+    inventoryHitBoxGraphics.interactive = true;
+
+    const spellHitBoxGraphics = new PIXI.Graphics();
+    spellHitBoxGraphics.hitArea = new PIXI.Rectangle(525 + 205, 170, 34, 37);
+    spellHitBoxGraphics.interactive = true;
+
+    inventoryHitBoxGraphics.on('mousedown', () => {
+      state.events.emit('interface-tab-click', state, 'inventory');
+      this.updateInterface(state);
+    });
+
+    spellHitBoxGraphics.on('mousedown', () => {
+      state.events.emit('interface-tab-click', state, 'spells');
+      this.updateInterface(state);
+    });
+
+    switch (state.interfaces.activeTab) {
+      case 'inventory':
+        const interfaceSprite = new PIXI.Sprite(PIXI.utils.TextureCache['interface']);
+        interfaceSprite.x = 525;
+        interfaceSprite.y = 168;
+        this.stage.addChild(interfaceSprite);
+
+        // Offset (45, 50)
+        state.interfaces.inventory.items
+          .forEach((item, i) => {
+            const itemSprite = tileset.sprite(this.tilesets.sprites, item);
+            itemSprite.interactive = true;
+            itemSprite.x = (i) % 4 * 40 + 50 + 25 * 21;
+            itemSprite.y = Math.floor((i) / 4) * 35 + 45 + 168;
+            itemSprite.on('mousedown', (e) => state.events.emit(`inventory-click-item-${item}`, state, i));
+            this.stage.addChild(itemSprite);
+          });
+        break;
+      case 'spells':
+        const spellInterfaceSprite = new PIXI.Sprite(PIXI.utils.TextureCache['magicinterface']);
+        spellInterfaceSprite.x = 525;
+        spellInterfaceSprite.y = 168;
+        this.stage.addChild(spellInterfaceSprite);
+
+        state.interfaces.spells.spells
+          .forEach((spell, i) => {
+            const spellSprite = tileset.sprite(this.tilesets.sprites, spell);
+            spellSprite.interactive = true;
+            spellSprite.x = (i) % 4 * 40 + 50 + 25 * 21;
+            spellSprite.y = Math.floor((i) / 4) * 35 + 45 + 168;
+            this.stage.addChild(spellSprite);
+            spellSprite.on('mousedown', (e) => state.events.emit(`spell-click-item-${spell}`, state, i));
+          });
+        break;
+
+    }
+
+    this.stage.addChild(inventoryHitBoxGraphics);
+    this.stage.addChild(spellHitBoxGraphics);
 
     this.render();
   }

@@ -1,4 +1,4 @@
-const sprites = require('./../../../resources/sprite-loader.json');
+const sprites = require('./../tilesets/sprite-loader.json');
 
 class SpriteLoader {
   constructor(loader) {

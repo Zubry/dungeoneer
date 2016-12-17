@@ -1,0 +1,31 @@
+{
+  "width": 20,
+  "height": 25,
+  "texture": "equipment.png",
+  "textureMap": [
+    {
+      "name": "primal-helmet",
+      "x": 0,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "shadow-silk-hood",
+      "x": 1,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "shadow-silk-hood2",
+      "x": 2,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "shadow-silk-hood3",
+      "x": 3,
+      "y": 0,
+      "solid": false
+    }
+  ]
+}

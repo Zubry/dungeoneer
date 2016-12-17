@@ -5,7 +5,7 @@ module.exports = {
     return new PIXI.Sprite(textures[n].texture);
   },
   load: function(file, offset, width) {
-    const tiles = require(`./../../resources/${file}.json`);
+    const tiles = require(`./tilesets/${file}.json`);
 
     const baseTexture = PIXI.BaseTexture.fromImage(`../resources/${tiles.texture}`);
 

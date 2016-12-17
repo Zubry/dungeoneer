@@ -1,7 +1,7 @@
 const generator = require('./generator.js');
 const keys = require('./add-keys.js');
-const terrain = require('./../../../resources/tilemap.json');
-const objects = require('./../../../resources/objectmap.json');
+const terrain = require('./../tilesets/tilemap.json');
+const objects = require('./../tilesets/objectmap.json');
 
 const rooms = {
   'generic': require('./../../../resources/rooms/generic.json'),
