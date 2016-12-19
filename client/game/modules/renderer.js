@@ -22,10 +22,12 @@ class Renderer {
     this.tilesets.minimapterrain = tileset.load('minimapmap', 0, 4);
     this.tilesets.keysprites = tileset.load('keymap', 0, 32);
     this.tilesets.equipmentsprites = tileset.load('equipmentmap', 0, 25);
+    this.tilesets.fishsprites = tileset.load('fishmap', 0, 30);
   }
 
   render() {
     this.renderer.render(this.stage);
+    // window.requestAnimationFrame(this.render.bind(this));
   }
 
   create2DRange(width, height) {
@@ -115,19 +117,107 @@ class Renderer {
     return { i, j, x, y, tile, visited };
   }
 
-  renderPlayer(state) {
-    const playerGraphics = tileset.sprite(this.tilesets.equipmentsprites, 2);
-    // const playerFrames = new PIXI.extras.AnimatedSprite([this.tilesets.equipmentsprites[3].texture, this.tilesets.equipmentsprites[4].texture]);
-    playerGraphics.x = 10 * options.tileSize + 12.5;
-    playerGraphics.y = 7 * options.tileSize + 12.5;
-    playerGraphics.anchor.x = 0.5;
-    playerGraphics.anchor.y = 0.5;
-    playerGraphics.rotation = state.player.orientation;
-    // playerGraphics.animationSpeed = 1;
-    // playerFrames.play();
+  renderWeapon(state) {
+    if (!state.attacking) {
+      return false;
+    }
 
-    this.stage.addChild(playerGraphics);
-    // this.foo = setInterval(() => this.render(), 300);
+    let texture = PIXI.Texture.fromImage('../resources/test-drawings/battleaxe.png');
+
+    if (state.stats.redraws % 2 === 1 && state.player.target) {
+      texture = PIXI.Texture.fromImage('../resources/test-drawings/battleaxe-swinging.png');
+    }
+
+    const weaponGraphics = new PIXI.Sprite(texture);
+    weaponGraphics.x = 10 * options.tileSize + 12.5;
+    weaponGraphics.y = 7 * options.tileSize + 12.5;
+    weaponGraphics.anchor.x = 0.5;
+    weaponGraphics.anchor.y = 0.5;
+    weaponGraphics.rotation = state.player.orientation;
+
+    this.stage.addChild(weaponGraphics);
+    this.render();
+
+  }
+
+  renderPlayer(state) {
+    this.renderWeapon(state);
+
+    if (state.path.empty()) {
+      const playerGraphics = tileset.sprite(this.tilesets.equipmentsprites, 2);
+      playerGraphics.x = 10 * options.tileSize + 12.5;
+      playerGraphics.y = 7 * options.tileSize + 12.5;
+      playerGraphics.anchor.x = 0.5;
+      playerGraphics.anchor.y = 0.5;
+      playerGraphics.rotation = state.player.orientation;
+
+      this.stage.addChild(playerGraphics);
+    } else {
+      let texture = PIXI.Texture.fromImage('../resources/test-drawings/walk4.png');
+
+      if (state.stats.redraws % 2 === 1) {
+        texture = PIXI.Texture.fromImage('../resources/test-drawings/walk8.png');
+      }
+
+      const playerGraphics = new PIXI.Sprite(texture);
+      playerGraphics.x = 10 * options.tileSize + 12.5;
+      playerGraphics.y = 7 * options.tileSize + 12.5;
+      playerGraphics.anchor.x = 0.5;
+      playerGraphics.anchor.y = 0.5;
+      playerGraphics.rotation = state.player.orientation;
+
+      this.stage.addChild(playerGraphics);
+      this.render();
+    }
+
+    const healthBarNegative = new PIXI.Graphics();
+    healthBarNegative.beginFill(0xFF0000);
+    healthBarNegative.drawRect(10 * options.tileSize, 7 * options.tileSize - 4, 25, 4);
+
+    const healthBarPositive = new PIXI.Graphics();
+    healthBarPositive.beginFill(0x00FF00);
+    healthBarPositive.drawRect(10 * options.tileSize, 7 * options.tileSize - 4, state.player.health / state.player.maxHealth * 25, 4);
+
+    this.stage.addChild(healthBarNegative);
+    this.stage.addChild(healthBarPositive);
+
+    this.render();
+  }
+
+  renderMonsters(state, { i, j, x, y, tile, visited }) {
+    let texture = PIXI.Texture.fromImage(`../resources/test-drawings/${tile.monster.name}.png`);
+
+    const monsterGraphics = new PIXI.Sprite(texture);
+    monsterGraphics.x = i * 25 + 12.5;
+    monsterGraphics.y = j * 25 + 12.5;
+    monsterGraphics.anchor.x = 0.5;
+    monsterGraphics.anchor.y = 0.5;
+    monsterGraphics.rotation = tile.monster.orientation;
+    monsterGraphics.interactive = true;
+
+    monsterGraphics.on('mousedown', (e) => {
+      console.log(`clicked`, tile);
+      state.events.emit(`attack-${tile.monster.name}`, tile.monster, state)
+    })
+
+    if (Math.abs(state.player.x - x) + Math.abs(state.player.y - y) === 1) {
+      state.events.emit(`adjacent-${tile.monster.name}`, tile.monster, state);
+      monsterGraphics.rotation = [Math.PI / 2, Math.PI, 0, 0, 3 * Math.PI / 2][(y - state.player.y) + 2 * (x - state.player.x) + 2]
+    }
+
+    const healthBarNegative = new PIXI.Graphics();
+    healthBarNegative.beginFill(0xFF0000);
+    healthBarNegative.drawRect(i * options.tileSize, j * options.tileSize - 4, 25, 4);
+
+    const healthBarPositive = new PIXI.Graphics();
+    healthBarPositive.beginFill(0x00FF00);
+    healthBarPositive.drawRect(i * options.tileSize, j * options.tileSize - 4, tile.monster.health / tile.monster.maxHealth * 25, 4);
+
+    this.stage.addChild(healthBarNegative);
+    this.stage.addChild(healthBarPositive);
+
+    this.stage.addChild(monsterGraphics);
+    this.render();
   }
 
   updateMap(state) {
@@ -168,6 +258,12 @@ class Renderer {
       .filter(({ x }) => x % 20 === 10)
       .filter(({ y }) => y % 20 === 10)
       .forEach(this.renderKeys.bind(this, state))
+
+    // Now, monsters
+    range
+      .filter(({ tile }) => tile.monster)
+      .filter(({ visited }) => visited)
+      .forEach(this.renderMonsters.bind(this, state));
 
     this.renderPlayer(state);
 
@@ -253,7 +349,14 @@ class Renderer {
         // Offset (45, 50)
         state.interfaces.inventory.items
           .forEach((item, i) => {
-            const itemSprite = tileset.sprite(this.tilesets.sprites, item);
+            let itemSprite;
+
+            if (item < 5) {
+              itemSprite = tileset.sprite(this.tilesets.fishsprites, item);
+            } else {
+              itemSprite = tileset.sprite(this.tilesets.sprites, item);
+            }
+
             itemSprite.interactive = true;
             itemSprite.x = (i) % 4 * 40 + 50 + 25 * 21;
             itemSprite.y = Math.floor((i) / 4) * 35 + 45 + 168;

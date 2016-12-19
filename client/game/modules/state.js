@@ -15,8 +15,12 @@ class GameState {
     this.events = new events.EventEmitter();
     this.interfaces = new Interfaces({activeTab});
     this.stats = {
-      startTime: Date.now()
+      startTime: Date.now(),
+      redraws: 0,
+      deaths: 0
     };
+
+    this.attacking = true;
   }
 }
 

@@ -6,7 +6,8 @@
     "build": "webpack game/main.js game/bundle.js --debug"
   },
   "dependencies": {
-    "pixi.js": "^4.2.3"
+    "pixi.js": "^4.2.3",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {},
   "author": "",

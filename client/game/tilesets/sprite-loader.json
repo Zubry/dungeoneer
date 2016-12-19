@@ -34,5 +34,9 @@
   {
     "name": "equipment",
     "location": "../resources/equipment.png"
+  },
+  {
+    "name": "fish",
+    "location": "../resources/fish.png"
   }
 ]

@@ -1,0 +1,31 @@
+{
+  "width": 30,
+  "height": 30,
+  "texture": "fish.png",
+  "textureMap": [
+    {
+      "name": "web-spinner",
+      "x": 0,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "salve-eel",
+      "x": 1,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "blue-crab",
+      "x": 2,
+      "y": 0,
+      "solid": false
+    },
+    {
+      "name": "cave-moray",
+      "x": 3,
+      "y": 0,
+      "solid": false
+    }
+  ]
+}

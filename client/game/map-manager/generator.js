@@ -5,7 +5,7 @@ function getRandomInt(max) {
 }
 
 function selectRoom() {
-  const list = ['ravine', 'walls', 'walls2', 'generic', 'generic'];
+  const list = ['ravine', 'walls', 'walls2', 'walls3', 'generic', 'generic'];
   const index = getRandomInt(list.length - 1);
 
   return list[index];

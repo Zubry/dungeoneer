@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="25" tileheight="25">
+ <tileset firstgid="1" name="warped-tileset" tilewidth="25" tileheight="25">
+  <image source="../warped-tileset.png" width="500" height="50"/>
+ </tileset>
+ <tileset firstgid="41" name="warped-objectset" tilewidth="25" tileheight="25">
+  <image source="../warped-objectset.png" width="500" height="50"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwTZWBgEB0CWBqIxXFgJijGJS+BxTxJIGYkE4uNmjfozWOlwDxmOpg32MNv1DzKzJMBYikcmA2KccnLYjFvsGIA0GYRoQ==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1" width="20" height="20"/>
+ <objectgroup name="Object Layer 2" width="20" height="20"/>
+</map>

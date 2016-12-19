@@ -36,6 +36,7 @@ function setup(dungeon, renderer) {
   require('./game/scripts/terrain/')(state.events);
   require('./game/scripts/items/')(state.events);
   require('./game/scripts/spells/')(state.events);
+  require('./game/scripts/monsters/')(state.events);
 
   renderer.updateMap(state);
   renderer.updateKeyBag(state);
@@ -53,6 +54,7 @@ function tick(state, renderer) {
   renderer.updateKeyBag(state);
   renderer.updateMinimap(state);
   renderer.updateInterface(state);
-
   state.events.emit('game-tick', state);
+
+  state.stats.redraws++;
 }

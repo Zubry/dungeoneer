@@ -4,7 +4,7 @@ const Spells = require('./spells.js');
 class Interfaces {
   constructor({activeTab}) {
     this.activeTab = activeTab;
-    this.inventory = new Inventory([81, 82]);
+    this.inventory = new Inventory([81, 82, 1, 2, 3, 4]);
     this.spells = new Spells([83, 84])
   }
 

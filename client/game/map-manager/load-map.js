@@ -3,12 +3,15 @@ const keys = require('./add-keys.js');
 const terrain = require('./../tilesets/tilemap.json');
 const objects = require('./../tilesets/objectmap.json');
 
+const uuid = require('uuid/v4');
+
 const rooms = {
   'generic': require('./../../../resources/rooms/generic.json'),
   'ravine': require('./../../../resources/rooms/ravine.json'),
   'start-room': require('./../../../resources/rooms/start-room.json'),
   'walls': require('./../../../resources/rooms/walls.json'),
-  'walls2': require('./../../../resources/rooms/walls2.json')
+  'walls2': require('./../../../resources/rooms/walls2.json'),
+  'walls3': require('./../../../resources/rooms/walls3.json')
 }
 
 let endpointSelected = false;
@@ -101,6 +104,18 @@ function processObjects({ height, terrain: ter, objects: obj, gatestones }) {
   return { height, terrain: ter, objects: o, gatestones };
 }
 
+function processMonsters({ height, terrain, objects, gatestones }) {
+  m = Array(10).fill(0)
+    .map(() => Math.random())
+    .filter((n) => n < 0.3)
+    .map((n) => n < 0.1 ? 'skeleton' : n)
+    .map((n) => n < 0.2 ? 'zombie' : n)
+    .map((n) => n < 0.3 ? 'forgotten-warrior' : n)
+    .map((m) => ({ name: m, x: Math.floor(Math.random() * 14) + 3, y: Math.floor(Math.random() * 14) + 3, id: uuid(), orientation: 0, maxHealth: 25, health: 25 }))
+
+  return { height, terrain, objects, gatestones, monsters: m };
+}
+
 function process(size, data, callback) {
   const arr = keys.addKeys(data)
     .map(({map, neighbors, room, key, doors, end}) => ({ neighbors, room, key, doors, end, map: rooms[map], name: map }))
@@ -108,7 +123,8 @@ function process(size, data, callback) {
     .map(({map, neighbors, room, key, doors, end, name}) => ({neighbors, room, key, doors, end, name, map: addEndpoint(size, map, room, neighbors, name, end)}))
     .map(({map, neighbors, room, key, doors, end, name}) => ({neighbors, room, key, doors, end, name, map: updateDoors(size, map, room, neighbors, name)}))
     .map(({map, neighbors, room, key, doors, end, name}) => ({neighbors, room, key, doors, end, name, map: processTerrain(map)}))
-    .map(({map, neighbors, room, key, doors, end, name}) => ({neighbors, room, key, doors, end, name, map: processObjects(map)}));
+    .map(({map, neighbors, room, key, doors, end, name}) => ({neighbors, room, key, doors, end, name, map: processObjects(map)}))
+    .map(({map, neighbors, room, key, doors, end, name}) => ({neighbors, room, key, doors, end, name, map: processMonsters(map)}));
 
   callback(arr);
 }

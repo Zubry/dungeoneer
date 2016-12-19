@@ -4,8 +4,18 @@ class Player {
     this.y = y;
     this.orientation = 0;
 
+    this.ht = {
+      x: x,
+      y: y
+    };
+
     this.ggt = undefined;
     this.gt = undefined;
+
+    this.health = 100;
+    this.maxHealth = 100;
+
+    this.target = undefined;
   }
 
   teleport(x, y) {
@@ -23,6 +33,10 @@ class Player {
     this.orientation = [Math.PI / 2, Math.PI, 0, 0, 3 * Math.PI / 2][(this.y - y) + 2 * (this.x - x) + 2];
     this.x = x;
     this.y = y;
+  }
+
+  face(x, y) {
+    this.orientation = [Math.PI / 2, Math.PI, 0, 0, 3 * Math.PI / 2][((this.y - y) + 2 * (this.x - x) + 2)];
   }
 
   place_ggt(x, y) {
@@ -49,11 +63,35 @@ class Player {
     this.gt = undefined;
   }
 
+  home_teleport() {
+    this.teleport(this.ht.x, this.ht.y);
+  }
+
   get_location() {
     return {
       x: this.x,
       y: this.y
     };
+  }
+
+  damage(amount) {
+    this.health -= amount;
+
+    if (this.health < 0) {
+      this.health = 0;
+    }
+  }
+
+  heal(amount) {
+    this.health += amount;
+
+    if (this.health > this.maxHealth) {
+      this.health = this.maxHealth;
+    }
+  }
+
+  full_heal() {
+    this.health = this.maxHealth;
   }
 }
 

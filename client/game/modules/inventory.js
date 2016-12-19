@@ -7,6 +7,10 @@ class Inventory {
     this.items.push(item);
   }
 
+  batch_add(items) {
+    this.items = this.items.concat(items).slice(0, 28);
+  }
+
   remove(i) {
     this.items.splice(i, 1);
   }

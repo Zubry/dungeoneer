@@ -1,7 +1,7 @@
 function end(state, tile) {
   const time = new Date(Date.now() - state.stats.startTime);
-  const ftime = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
-  // alert(`Congrats! You finished the dungeon in ${ftime}`);
+  const ftime = `${Math.floor(time / 1000 / 60 / 60)}:${Math.floor(time / 1000 / 60)}:${Math.floor(time / 1000)}`;
+  alert(`Congrats! You finished the dungeon in ${ftime} and died ${state.stats.deaths} times`);
 }
 
 module.exports = function(e) {
